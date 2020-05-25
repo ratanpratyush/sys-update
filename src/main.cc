@@ -3,19 +3,11 @@
 
 using namespace std;
 
-int check_func(releax::cli& app){
-    bool force = false;
+int main_func(releax::cli& app)
+{
+    releax::curl downloader;
 
     string url = "https://releax.in";
-
-    string cus_url = app.val_of_arg("url");
-
-    if (len(cus_url) == 0)
-    cus_url = url;
-    else
-    url = cus_url;
-
-    releax::curl downloader;
     string content;
     string header;
 
@@ -36,12 +28,28 @@ int check_func(releax::cli& app){
     cout << "header: " << header << endl;
     cout << "Content: " << content << endl;
 
+}
+
+int check_func(releax::cli& app){
+    bool force = false;
+
+    string url = "https://releax.in";
+
+    string cus_url = app.val_of_arg("url");
+
+    if (len(cus_url) == 0)
+    cus_url = url;
+    else
+    url = cus_url;
+
+    
     if (app.is_flagset("f") || app.is_flagset("force")) {
         cout << "force flag set" << endl;
     }
 
     return 0;
 }
+
 
 int update_func(releax::cli& app){
     cout << "Update function is working" << endl;
