@@ -2,28 +2,22 @@
 
 using namespace std;
 
-int main_func(releax::cli& app)
-{
-    if (app.is_flagset("force")) {
+int check_func(releax::cli& app){
+    bool force = false;
 
-    }
+    cout << "Check function is working" << endl;
 
-    if (app.is_flagset("r")){
-
+    if (app.is_flagset("f") || app.is_flagset("force")) {
+        cout << "force flag set" << endl;
     }
 
     return 0;
-
 }
 
-int check_func(string url, string release){
-    cout << "Check function is working" << endl;
-
-}
-
-int update_func(int force_type, int backup_loc, int restore_point){
+int update_func(releax::cli& app){
     cout << "Update function is working" << endl;
 
+    return 0;
 }
 
 
@@ -36,9 +30,8 @@ int main(int ac, char** av)
        .release('a')
        .description("a new alternative sys-update")
        .author("Pratyush Ratan", "ratan.pratyush@gmail.com", "-")
-       .sub("update", "To update sys-update", "force-type", "backup-loc", "restore-point", update_func)
-       .sub("check", "To check something", "url", "release", check_func)
-       .main(main_func);
+       .sub("update", "To update sys-update", "force-type|backup-loc|restore-point", update_func)
+       .sub("check", "To check something", "url|release", check_func);
 
 
     return app.execute(ac, av);
